@@ -18,7 +18,7 @@ spring:
         - id: account-api
           uri: http://221.156.195.73:6101/
           predicates:
-            - Path=/account/**
+            - Path=/api/v1/account/**
           filters:
             - name: AccountAPILogger
               args:
@@ -27,7 +27,7 @@ spring:
         - id: schedule-api
           uri: http://221.156.195.73:6102/
           predicates:
-            - Path=/account/**
+            - Path=/api/v1/schedule/**
           filters:
             - name: ScheduleAPILogger
               args:

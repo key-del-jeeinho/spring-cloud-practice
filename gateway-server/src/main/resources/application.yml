@@ -1,0 +1,33 @@
+### Server Configuration
+server:
+  port: 6100
+### Spring Boot Configuration
+spring:
+  ### Spring Cloud Configuration
+  cloud:
+    gateway:
+      ### Define Global Filters
+      default-filters:
+        - name: GlobalFilter
+          args:
+            usage: LOGGING
+      ### Define MicroService that Routing
+      routes:
+        ### Account API
+        - id: account-api
+          uri: http://221.156.195.73:6100/
+          predicates:
+            - Path=/account/**
+          filters:
+            - name: AccountAPILogger
+              args:
+                usage: LOGGING
+        ### Schedule API
+        - id: schedule-api
+          uri: http://221.156.195.73:6100/
+          predicates:
+            - Path=/account/**
+          filters:
+            - name: ScheduleAPILogger
+              args:
+                usage: LOGGING

@@ -1,4 +1,4 @@
-package com.velocia.gatewayserver.domain.schedule.filter;
+package com.velocia.gatewayserver.domain.openapi;
 
 import com.velocia.gatewayserver.global.data.FilterConfig;
 import org.apache.logging.log4j.LogManager;
@@ -9,20 +9,20 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
-public class ScheduleAPILogger extends AbstractGatewayFilterFactory<FilterConfig> {
-    private static final Logger LOGGER = LogManager.getLogger(ScheduleAPILogger.class);
+public class OpenAPILogger extends AbstractGatewayFilterFactory<FilterConfig> {
+    private static final Logger LOGGER = LogManager.getLogger(OpenAPILogger.class);
 
-    public ScheduleAPILogger() {
+    public OpenAPILogger() {
         super(FilterConfig.class);
     }
 
     @Override
     public GatewayFilter apply(FilterConfig config) {
         return (exchange, chain) -> {
-            LOGGER.info("ScheduleAPILogger USAGE | | | | -> " + config.getUsage());
-            LOGGER.info("ScheduleAPILogger START | | | | -> " + exchange.getRequest().getPath());
+            LOGGER.info("OpenAPILogger USAGE | | | | -> " + config.getUsage());
+            LOGGER.info("OpenAPILogger START | | | | -> " + exchange.getRequest().getPath());
             return chain.filter(exchange).then(Mono.fromRunnable(() ->
-                    LOGGER.info("ScheduleAPILogger END | | | | -> " + exchange.getResponse())
+                    LOGGER.info("OpenAPILogger END | | | | -> " + exchange.getResponse())
             ));
         };
     }

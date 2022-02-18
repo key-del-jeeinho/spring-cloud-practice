@@ -20,7 +20,7 @@ public class GlobalFilter extends AbstractGatewayFilterFactory<FilterConfig> {
     public GatewayFilter apply(FilterConfig config) {
         return (exchange, chain) -> {
             LOGGER.info("GlobalFilter USAGE | | | | -> " + config.getUsage());
-            LOGGER.info("GlobalFilter START | | | | -> " + exchange.getRequest());
+            LOGGER.info("GlobalFilter START | | | | -> " + exchange.getRequest().getPath());
             return chain.filter(exchange).then(Mono.fromRunnable(() ->
                     LOGGER.info("GlobalFilter END | | | | -> " + exchange.getResponse())
             ));

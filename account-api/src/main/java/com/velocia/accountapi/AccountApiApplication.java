@@ -18,7 +18,6 @@ public class AccountApiApplication {
     //Eureka 가 적용된 RestTemplate (Ribbon 은 non-blocking 기반의 WebClient 를 지원하지 않는다.)
     @LoadBalanced @Bean
     public RestTemplate commonRestTemplate() {
-        final RestTemplate restTemplate = new RestTemplate();
-        return restTemplate;
+        return new RestTemplate();
     }
 }
